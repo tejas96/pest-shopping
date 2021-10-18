@@ -1,0 +1,3 @@
+const USER_LOGIN_LOCAL_STORAGE_KEY = 'userInfo';
+
+export { USER_LOGIN_LOCAL_STORAGE_KEY };
