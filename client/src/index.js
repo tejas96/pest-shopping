@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ShoppingCart from './shoping-cart';
+import ShoppingCart from './components';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { applyAxiosConfig } from './config/axiosConfig';

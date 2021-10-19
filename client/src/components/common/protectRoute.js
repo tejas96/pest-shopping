@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import ProductPage from '../shoping-cart/dashboard';
-import { USER_LOGIN_LOCAL_STORAGE_KEY } from '../config/appConst';
+import ProductPage from '../dashboard/ProductPage';
+import { USER_LOGIN_LOCAL_STORAGE_KEY } from '../../config/appConst';
 import PropTypes from 'prop-types';
 
 const ProtectRoute = ({ path = '/', component = ProductPage, ...props }) => {

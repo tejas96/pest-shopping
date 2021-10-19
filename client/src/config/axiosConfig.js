@@ -1,7 +1,6 @@
 import axios from 'axios';
-import { mySecureLocal } from '../common/utilityMethods';
 import { USER_LOGIN_LOCAL_STORAGE_KEY } from './appConst';
-
+import { mySecureLocal } from '../utility/utilityMethods';
 export const applyAxiosConfig = () => {
   const userInfoStr = mySecureLocal('get', USER_LOGIN_LOCAL_STORAGE_KEY);
   const userInfoObj = JSON.parse(userInfoStr);

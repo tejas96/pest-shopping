@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { loginApi } from '../config/api';
-import { mySecureLocal } from '../common/utilityMethods';
-import { USER_LOGIN_LOCAL_STORAGE_KEY } from '../config/appConst';
-import { login as loginAction } from '../config/redux/features/login/authSlice';
 import { useDispatch } from 'react-redux';
+import { mySecureLocal } from '../../utility/utilityMethods';
+import { loginApi } from '../../config/api';
+import { USER_LOGIN_LOCAL_STORAGE_KEY } from '../../config/appConst';
+import { login as loginAction } from '../../config/redux/features/login/authSlice';
+import GoogleLogin from 'react-google-login';
 
 const LoginComponent = (props) => {
   const dispatch = useDispatch();
@@ -12,6 +12,7 @@ const LoginComponent = (props) => {
     userName: '',
     password: ''
   });
+  const [google, setGoogle] = useState(false);
   const handleLoginForm = (event) => {
     const property = event?.target?.name;
     const value = event?.target?.value;
@@ -37,6 +38,13 @@ const LoginComponent = (props) => {
       .catch((err) => {
         alert('Authentication failed, check logins cred');
       });
+  };
+  const openGoogleLogin = (e) => {
+    e.preventDefault();
+    setGoogle(true);
+  };
+  const handle = (res) => {
+    console.log(res.prifile);
   };
   return (
     <div
@@ -68,8 +76,16 @@ const LoginComponent = (props) => {
         </div>
         <div>
           <button onClick={login}>Login</button>
+          <button onClick={openGoogleLogin}>Google Login</button>
         </div>
       </form>
+      <GoogleLogin
+        clientId="975111621469-v5lhlinkth3j22ho558r44vlggme0cvd.apps.googleusercontent.com"
+        buttonText="google"
+        onSuccess={handle}
+        onFailure={handle}
+        cookiePolicy={'single_host_origin'}
+      />
     </div>
   );
 };

@@ -1,9 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import FeatherIcon from 'feather-icons-react';
-import { logout as logoutAction } from '../config/redux/features/login/authSlice';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import { logout } from '../common/utilityMethods';
+import { logout as logoutAction } from '../../config/redux/features/login/authSlice';
+import { logout } from '../../utility/utilityMethods';
 
 const LogoutComponent = ({ onLogout = () => {} }) => {
   const dispatch = useDispatch();

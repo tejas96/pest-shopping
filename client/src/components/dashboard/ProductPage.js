@@ -1,9 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { logout } from '../../common/utilityMethods';
-import { Header } from '../../components';
+import { Header } from '../common';
 import { ApiService, Endpoints } from '../../config/api';
-import Card from './Card.jsx';
+import Card from '../product-card/Card.jsx';
 import useHandler from './useHandler';
 
 const ProductPage = (props) => {
