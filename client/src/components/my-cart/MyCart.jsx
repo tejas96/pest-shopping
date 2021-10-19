@@ -10,7 +10,7 @@ const MyCart = props => {
         qty:0
     })
     useEffect(()=>{
-        ApiService.get(Endpoints.fetchCart, {id:userInfo._id}).then(result=>{    
+        ApiService.get(Endpoints.fetchCart, {id:userInfo?._id}).then(result=>{    
         const cartItems = new Map();
         result.data.map(function(item){
             cartItems.set(item.product_id, item);
@@ -54,7 +54,7 @@ const MyCart = props => {
             ApiService.put(Endpoints.updateCartItem, {  
                 _id : cartId,
                 product_id:id,
-                user_id:userInfo._id,
+                user_id:userInfo?._id,
                 qty:cartItem.qty,
                 totalAmount:cartItem.totalAmount,
                 timestamp:Date.now()}).then(result=>{

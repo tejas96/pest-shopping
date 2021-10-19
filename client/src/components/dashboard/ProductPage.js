@@ -10,8 +10,8 @@ const ProductPage = (props) => {
   const { onSearch, componentInfo, onSelect } = useHandler();
   const handleCartItemAdd = (product) => {
     ApiService.post(Endpoints.addCartItem, {
-      product_id: product._id,
-      user_id: userInfo._id,
+      product_id: product?._id,
+      user_id: userInfo?._id,
       qty: 1,
       totalAmount: product.price,
       timestamp: Date.now()
