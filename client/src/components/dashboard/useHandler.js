@@ -9,10 +9,11 @@ const useHandler = (props) => {
   });
   useEffect(() => {
     ApiService.get(Endpoints.fetchAllProduct).then((res) => {
+      console.log(res);
       setComponentInfo((prevState) => ({
         ...prevState,
-        products: res.data,
-        filterData: res.data
+        products: res?.data,
+        filterData: res?.data
       }));
     });
   }, []);
@@ -27,7 +28,7 @@ const useHandler = (props) => {
       ApiService.get(Endpoints.fetchAllProduct).then((res) => {
         setComponentInfo((prevState) => ({
           ...prevState,
-          products: res.data,
+          products: res?.data,
           filterData: []
         }));
       });

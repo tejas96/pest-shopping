@@ -8,6 +8,7 @@ import useHandler from './useHandler';
 const ProductPage = (props) => {
   const userInfo = useSelector((state) => state.auth.user);
   const { onSearch, componentInfo, onSelect } = useHandler();
+
   const handleCartItemAdd = (product) => {
     ApiService.post(Endpoints.addCartItem, {
       product_id: product?._id,

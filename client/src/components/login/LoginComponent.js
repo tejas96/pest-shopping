@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { mySecureLocal } from '../../utility/utilityMethods';
-import { loginApi } from '../../config/api';
+import { ApiService, Endpoints } from '../../config/api';
 import { USER_LOGIN_LOCAL_STORAGE_KEY } from '../../config/appConst';
 import { login as loginAction } from '../../config/redux/features/login/authSlice';
 import GoogleLogin from 'react-google-login';
@@ -20,11 +20,10 @@ const LoginComponent = (props) => {
   };
   const login = (event) => {
     event.preventDefault();
-    loginApi
-      .loginUser({
-        userName: loginCreds.userName,
-        password: loginCreds.password
-      })
+    ApiService.post(Endpoints.loginUser, {
+      userName: loginCreds.userName,
+      password: loginCreds.password
+    })
       .then((result) => {
         if (result.status === 403) {
           alert(result.statusText);
