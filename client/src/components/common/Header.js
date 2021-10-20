@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './header.css';
 import FeatherIcon from 'feather-icons-react';
-import LogoutComponent from '../login/LogoutComponent';
+import LogoutComponent from '../auth/LogoutComponent';
 
 const Header = ({
   title = 'title',

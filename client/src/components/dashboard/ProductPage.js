@@ -4,6 +4,8 @@ import { Header } from '../common';
 import { ApiService, Endpoints } from '../../config/api';
 import Card from '../product-card/Card.jsx';
 import useHandler from './useHandler';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductPage = (props) => {
   const userInfo = useSelector((state) => state.auth.user);
@@ -16,12 +18,20 @@ const ProductPage = (props) => {
       qty: 1,
       totalAmount: product.price,
       timestamp: Date.now()
-    }).then(() => {
-      props.history.push(`/cart/${product._id}`);
-    });
+    })
+      .then(() => {
+        props.history.push(`/cart/${product._id}`);
+      })
+      .catch((err) => {
+        toast(err.message);
+        setTimeout(() => {
+          props.history.push(`/login`);
+        }, 2000);
+      });
   };
   return (
     <div>
+      <ToastContainer />
       <Header
         title="Hub"
         onSelect={onSelect}
