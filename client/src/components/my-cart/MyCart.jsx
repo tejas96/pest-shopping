@@ -12,14 +12,14 @@ const MyCart = props => {
     useEffect(()=>{
         ApiService.get(Endpoints.fetchCart, {id:userInfo?._id}).then(result=>{    
         const cartItems = new Map();
-        result.data.map(function(item){
+        result?.data?.map(function(item){
             cartItems.set(item.product_id, item);
         })
         return cartItems;
         }).then((cartItems)=>{
             if(cartItems?.size){
                 ApiService.post(Endpoints.fetchSearchProducts, {ids:Array.from(cartItems.keys())}).then(result=>{
-                    result.data.map(item=>{
+                    result?.data?.map(item=>{
                      let cartItem = cartItems.get(item._id);
                      cartItems.set(item._id, { ...item,...cartItem, productId: item._id});
                      

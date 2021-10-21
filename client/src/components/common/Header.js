@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import './header.css';
 import FeatherIcon from 'feather-icons-react';
+import React, { useEffect, useState } from 'react';
 import LogoutComponent from '../auth/LogoutComponent';
+import './header.css';
 
 const Header = ({
   title = 'title',
@@ -24,6 +23,17 @@ const Header = ({
     };
   };
 
+  useEffect(() => {
+    // window.addEventListener('scroll', (e) => {
+    //   console.log(e);
+    //   debouncing(1000)(() => {
+    //     console.log('stop scroll');
+    //   });
+    // });
+    // return () => {
+    //   window.removeEventListener('scroll', (e) => {});
+    // };
+  }, []);
   return (
     <div className="container">
       <div className="title">

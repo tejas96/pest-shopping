@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import FeatherIcon from 'feather-icons-react';
-import './style.css';
+import { Button, Text, Wrapper } from '../common';
+
 const Card = ({
   price = 0.0,
   imgSrc = '',
@@ -10,30 +9,23 @@ const Card = ({
   onCartClick=()=>{}
 }) => {
   return (
-    <div className="card">
-      <div className="img-container">
-        <div className="img">
-          <img src={imgSrc} height={230} width={200} />
-          <div className="img-cart-logo">
-            <FeatherIcon
-              icon="shopping-cart"
-              style={{
-                color: 'tomato'
-              }}
-              onClick={onCartClick}
-            />
-          </div>
-        </div>
-      </div>
-      <div className="card-title">
-        <h4>{title}</h4>
-      </div>
-      <div>{category}</div>
-      <div>{price}</div>
-    </div>
+    <Wrapper padding='5px' mh={20} mv={10} height={300} width={200}>
+      <Wrapper>
+          <img alt={title} src={imgSrc} width={200} height={200} />
+      </Wrapper>
+      <Wrapper className="card-title">
+        <Text singleLine><span style={{opacity:0.5}}>product: </span>{title}</Text>
+      </Wrapper>
+      <Wrapper>
+        <Text singleLine><span style={{opacity:0.5}}>category: </span>{category}</Text>
+      </Wrapper>
+       <Wrapper> <Text singleLine><span style={{opacity:0.5}}>price: </span>{price} $</Text></Wrapper>
+      <Button onClick={onCartClick} text='Add Cart' fit icon="shopping-cart" mv={0} mh={0} background='#FFA41C'/>
+    </Wrapper>
   );
 };
 
 Card.propTypes = {};
 
 export default Card;
+

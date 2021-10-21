@@ -1,4 +1,7 @@
 import Button from './Button';
 import Header from './Header';
 import Input from './Input';
-export { Button, Header, Input };
+import FlexWrapper from './FlexWrapper';
+import Wrapper from './Wrapper';
+import Text from './Text';
+export { Text, Wrapper, Button, Header, Input, FlexWrapper };

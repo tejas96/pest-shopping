@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { ApiService, Endpoints } from '../../config/api';
 
-const useHandler = (props) => {
+const useProductPageContainer = ({ props = {} }) => {
+  const userInfo = useSelector((state) => state.auth.user);
   const [componentInfo, setComponentInfo] = useState({
     filterData: [],
     selectedProduct: '',
@@ -60,9 +62,27 @@ const useHandler = (props) => {
       }));
     });
   };
-  return { onSearch, componentInfo, onSelect };
+
+  const handleCartItemAdd = (product) => {
+    ApiService.post(Endpoints.addCartItem, {
+      product_id: product?._id,
+      user_id: userInfo?._id,
+      qty: 1,
+      totalAmount: product.price,
+      timestamp: Date.now()
+    })
+      .then(() => {
+        props?.history?.push(`/cart/${product._id}`);
+      })
+      .catch((err) => {
+        setTimeout(() => {
+          props?.history?.push(`/login`);
+        }, 2000);
+      });
+  };
+  return { onSearch, componentInfo, onSelect, handleCartItemAdd };
 };
 
-useHandler.propTypes = {};
+useProductPageContainer.propTypes = {};
 
-export default useHandler;
+export default useProductPageContainer;
