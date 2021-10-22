@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../../../config/redux/features/login/authSlice';
+import { loginUser } from '../../../config/redux/features/login/authThunkApi';
 
 function useLoginContainer() {
   const userAuth = useSelector((state) => state.auth);
