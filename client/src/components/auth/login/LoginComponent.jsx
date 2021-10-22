@@ -3,11 +3,14 @@ import img from '../../../assets/globe.png';
 import { Button, Input } from '../../common';
 import useLoginContainer from './loginContainer';
 import { FContainer, FIComponent, H1 } from './styledComponent';
+import {Loader} from 'components/common';
 const LoginComponent = (props) => {
-  const { onChange, handleLoginApi } = useLoginContainer();
+  const { onChange, handleLoginApi, loading } = useLoginContainer();
 
   return (
-    <FContainer height="100vh" width="100vw">
+    <>
+    <Loader show={loading}/>
+    <FContainer height="97vh" width="97vw">
       <FIComponent height="100%" width="50%" breakpoint>
         <img
           src={img}
@@ -65,6 +68,8 @@ const LoginComponent = (props) => {
         </FIComponent>
       </FIComponent>
     </FContainer>
+     
+    </>
   );
 };
 

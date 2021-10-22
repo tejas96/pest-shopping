@@ -8,7 +8,6 @@ const CartCard = ({
   totalAmount,
   timestamp,
   qty,
-  onBuyClick = () => {},
   onDeleteClick = () => {},
   onChange = () => {},
   productId,

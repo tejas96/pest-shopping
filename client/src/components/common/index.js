@@ -4,4 +4,5 @@ import Input from './Input';
 import FlexWrapper from './FlexWrapper';
 import Wrapper from './Wrapper';
 import Text from './Text';
-export { Text, Wrapper, Button, Header, Input, FlexWrapper };
+import Loader from './Loader';
+export { Loader, Text, Wrapper, Button, Header, Input, FlexWrapper };

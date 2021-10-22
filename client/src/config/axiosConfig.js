@@ -25,12 +25,12 @@ export const applyAxiosConfig = () => {
     }
   );
 
-  axios.interceptors.response.use(
-    (config) => {
-      return config;
-    },
-    (err) => {
-      console.log('tejas', err);
-    }
-  );
+  // axios.interceptors.response.use(
+  //   (config) => {
+  //     return config;
+  //   },
+  //   (err) => {
+  //     console.log('tejas', err);
+  //   }
+  // );
 };
