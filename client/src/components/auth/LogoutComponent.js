@@ -10,6 +10,9 @@ const LogoutComponent = ({ onLogout = () => {} }) => {
     logout();
     dispatch(logoutAction());
     onLogout();
+    setTimeout(() => {
+      window.location.replace('/login');
+    }, 1000);
   };
   return <FeatherIcon icon="log-out" onClick={handleLogout} />;
 };

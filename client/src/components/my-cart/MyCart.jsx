@@ -1,33 +1,34 @@
+import { Loader } from 'components/common';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { ApiService, Endpoints } from '../../config/api';
-import CartCard from "./CartCard";
+import CartCard from "./CartCardComponent";
 const MyCart = props => {
-
     const userInfo = useSelector(state=>state.auth.user);
     const [userCartItems, setUserCartItems] = useState(new Map());
-    const [cartUpdateInfo, setCartUpdateInfo] = useState({
+    const [loader, setLoader] = useState(false);
+    const [cartUpdateInfo] = useState({
         qty:0
     })
+
     useEffect(()=>{
+        setLoader(()=>true);
         ApiService.get(Endpoints.fetchCart, {id:userInfo?._id}).then(result=>{    
         const cartItems = new Map();
-        result.data.map(function(item){
-            cartItems.set(item.product_id, item);
-        })
+        result?.data?.map((item)=>cartItems.set(item.product_id, item))
         return cartItems;
         }).then((cartItems)=>{
             if(cartItems?.size){
                 ApiService.post(Endpoints.fetchSearchProducts, {ids:Array.from(cartItems.keys())}).then(result=>{
-                    result.data.map(item=>{
+                    result?.data?.map(item=>{
                      let cartItem = cartItems.get(item._id);
                      cartItems.set(item._id, { ...item,...cartItem, productId: item._id});
-                     
                     })
                     setUserCartItems(()=>cartItems);
                  })
-     
             }
+        }).finally(()=>{
+            setLoader(()=>false);
         })
     },[]);
     const handleBuyClick = ()=>{
@@ -66,6 +67,7 @@ const MyCart = props => {
     }
     return (
         <div>
+            <Loader show={loader}/>
             {
                 Array.from(userCartItems?.values())?.map(item=>{
                    return <CartCard onBuyClick={handleBuyClick} updateInfo={cartUpdateInfo} onChange={handleOnChange} onDeleteClick={handleDelete} cartId={item._id} {...item}/>

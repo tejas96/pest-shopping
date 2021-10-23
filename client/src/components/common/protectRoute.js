@@ -1,8 +1,7 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import ProductPage from '../dashboard/ProductPage';
+import { Redirect, Route } from 'react-router-dom';
 import { USER_LOGIN_LOCAL_STORAGE_KEY } from '../../config/appConst';
-import PropTypes from 'prop-types';
+import ProductPage from '../dashboard/ProductPageComponent.jsx';
 
 const ProtectRoute = ({ path = '/', component = ProductPage, ...props }) => {
   const checkTokenAvailable = localStorage.getItem(

@@ -1,0 +1,17 @@
+{
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.autoIndent": "advanced",
+    "editor.autoClosingBrackets": "always",
+    "editor.autoClosingQuotes": "always",
+    "prettier.trailingComma": "none",
+    "prettier.arrowParens": "avoid",
+    "prettier.semi": true,
+    "prettier.jsxBracketSameLine": true,
+    "prettier.htmlWhitespaceSensitivity": "css",
+    "css.lint.vendorPrefix": "error",
+    "git.autofetchPeriod": 180,
+    "prettier.bracketSpacing": true,
+    "prettier.jsxSingleQuote": false,
+    "prettier.singleQuote": false,
+}

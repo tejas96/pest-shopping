@@ -7,6 +7,8 @@ import { applyAxiosConfig } from './config/axiosConfig';
 import { store, persistor } from './config/redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { config } from 'dotenv';
+import { theme } from './config/styledThemeProvider';
+import { ThemeProvider } from 'styled-components';
 
 config('./.env');
 applyAxiosConfig();
@@ -16,7 +18,9 @@ ReactDOM.render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Router>
-          <ShoppingCart />
+          <ThemeProvider theme={theme}>
+            <ShoppingCart />
+          </ThemeProvider>
         </Router>
       </PersistGate>
     </Provider>

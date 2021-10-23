@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import './header.css';
 import FeatherIcon from 'feather-icons-react';
-import LogoutComponent from '../login/LogoutComponent';
+import React, { useEffect, useState } from 'react';
+import LogoutComponent from '../auth/LogoutComponent';
+import { Input } from '.';
+import './header.css';
 
 const Header = ({
   title = 'title',
@@ -24,6 +24,7 @@ const Header = ({
     };
   };
 
+  useEffect(() => {}, []);
   return (
     <div className="container">
       <div className="title">

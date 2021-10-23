@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import LoginComponent from './login/LoginComponent';
-import LogoutComponent from './login/LogoutComponent';
+import LoginComponent from './auth/login/LoginComponent.jsx';
+import LogoutComponent from './auth/LogoutComponent';
 import ProtectRoute from './common/protectRoute';
-import DashBoard from './dashboard/ProductPage';
+import DashBoard from './dashboard/ProductPageComponent.jsx';
 import MyCart from './my-cart/MyCart';
 
 const ShoppingCart = (props) => {

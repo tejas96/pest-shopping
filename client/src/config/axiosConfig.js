@@ -21,14 +21,16 @@ export const applyAxiosConfig = () => {
       return config;
     },
     (err) => {
-      console.log('tejas', err);
+      return Promise.reject(err);
     }
   );
 
-  axios.interceptors.response.use(
-    (config) => {},
-    (err) => {
-      console.log('tejas', err);
-    }
-  );
+  // axios.interceptors.response.use(
+  //   (config) => {
+  //     return config;
+  //   },
+  //   (err) => {
+  //     console.log('tejas', err);
+  //   }
+  // );
 };
