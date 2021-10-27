@@ -2,7 +2,7 @@ import React from 'react';
 import img from '../../../assets/globe.png';
 import { Button, Input } from '../../common';
 import useLoginContainer from './loginContainer';
-import { FContainer, FIComponent, H1 } from './styledComponent';
+import { FContainer, FIComponent, H1, Link } from './styledComponent';
 import {Loader} from 'components/common';
 const LoginComponent = (props) => {
   const { onChange, handleLoginApi, loading } = useLoginContainer();
@@ -54,17 +54,13 @@ const LoginComponent = (props) => {
             <Button
               text="Login With Google"
               onClick={(event) =>
-                handleLoginApi({ props, authType: 'self', event })
+                handleLoginApi({ props, authType: 'google', event })
               }
             />
           </FIComponent>
-          {/* <GoogleLogin
-        clientId="975111621469-v5lhlinkth3j22ho558r44vlggme0cvd.apps.googleusercontent.com"
-        buttonText="google"
-        onSuccess={(data) => handleLoginApi({ props, data })}
-        onFailure={(data) => handleLoginApi({ props, data })}
-        cookiePolicy={'single_host_origin'}
-      /> */}
+          <FIComponent>
+            <span>New User ? </span><Link href='/signup'>SignUp Here</Link>
+          </FIComponent>
         </FIComponent>
       </FIComponent>
     </FContainer>

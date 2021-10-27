@@ -9,7 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { config } from 'dotenv';
 import { theme } from './config/styledThemeProvider';
 import { ThemeProvider } from 'styled-components';
-
+import './config/firebase/firebase';
 config('./.env');
 applyAxiosConfig();
 

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../../config/redux/features/login/authThunkApi';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 
 function useLoginContainer() {
   const userAuth = useSelector((state) => state.auth);
@@ -34,7 +36,12 @@ function useLoginContainer() {
         })
       );
     } else if (authType === 'google') {
-      //handle google auth
+      firebase
+        .auth()
+        .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+        .then((userCred) => {
+          console.log(userCred);
+        });
     }
   };
 

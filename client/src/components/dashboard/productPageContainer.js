@@ -7,17 +7,22 @@ const useProductPageContainer = ({ props = {} }) => {
   const [componentInfo, setComponentInfo] = useState({
     filterData: [],
     selectedProduct: '',
-    products: []
+    products: [],
+    loader: false
   });
   useEffect(() => {
-    ApiService.get(Endpoints.fetchAllProduct).then((res) => {
-      console.log(res);
-      setComponentInfo((prevState) => ({
-        ...prevState,
-        products: res?.data,
-        filterData: res?.data
-      }));
-    });
+    setComponentInfo((prevState) => ({ ...prevState, loader: true }));
+    ApiService.get(Endpoints.fetchAllProduct)
+      .then((res) => {
+        setComponentInfo((prevState) => ({
+          ...prevState,
+          products: res?.data,
+          filterData: res?.data
+        }));
+      })
+      .finally(() => {
+        setComponentInfo((prevState) => ({ ...prevState, loader: false }));
+      });
   }, []);
 
   /**
@@ -36,14 +41,17 @@ const useProductPageContainer = ({ props = {} }) => {
       });
       return;
     }
-    ApiService.post(Endpoints.fetchSearchProducts, { title: value }).then(
-      (res) => {
+    setComponentInfo((prevState) => ({ ...prevState, loader: true }));
+    ApiService.post(Endpoints.fetchSearchProducts, { title: value })
+      .then((res) => {
         setComponentInfo((prevState) => ({
           ...prevState,
           filterData: res.data
         }));
-      }
-    );
+      })
+      .finally((res) => {
+        setComponentInfo((prevState) => ({ ...prevState, loader: false }));
+      });
   };
 
   /**
@@ -51,16 +59,21 @@ const useProductPageContainer = ({ props = {} }) => {
    * @param {*} value
    */
   const onSelect = (value) => {
+    setComponentInfo((prevState) => ({ ...prevState, loader: true }));
     ApiService.post(Endpoints.fetchSearchProducts, {
       title: value?.title
-    }).then((res) => {
-      setComponentInfo((prevState) => ({
-        ...prevState,
-        selectedProduct: value,
-        filterData: [],
-        products: res.data
-      }));
-    });
+    })
+      .then((res) => {
+        setComponentInfo((prevState) => ({
+          ...prevState,
+          selectedProduct: value,
+          filterData: [],
+          products: res.data
+        }));
+      })
+      .finally(() => {
+        setComponentInfo((prevState) => ({ ...prevState, loader: false }));
+      });
   };
 
   const handleCartItemAdd = (product) => {
@@ -78,7 +91,8 @@ const useProductPageContainer = ({ props = {} }) => {
         setTimeout(() => {
           props?.history?.push(`/login`);
         }, 2000);
-      });
+      })
+      .finally(() => {});
   };
   return { onSearch, componentInfo, onSelect, handleCartItemAdd };
 };

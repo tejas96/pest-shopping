@@ -1,4 +1,5 @@
-import { FlexWrapper, Wrapper } from 'components/common';
+import { FlexWrapper, Loader, Wrapper } from 'components/common';
+import Footer from 'components/common/Footer';
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,6 +12,7 @@ const ProductPage = (props) => {
   const { onSearch, componentInfo, onSelect, handleCartItemAdd} = useProductPageContainer({props});
   return (
     <Wrapper>
+      <Loader show={componentInfo.loader}/>
       <ToastContainer />
       <Header
         title="Hub"
@@ -32,6 +34,7 @@ const ProductPage = (props) => {
           );
         })}
       </FlexWrapper>
+      <Footer/>
     </Wrapper>
   );
 };

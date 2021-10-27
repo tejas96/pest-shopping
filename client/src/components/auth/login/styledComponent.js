@@ -30,3 +30,7 @@ export const H1 = styled.h1`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `;
+export const Link = styled.a`
+  text-decoration: none;
+  cursor: pointer;
+`;

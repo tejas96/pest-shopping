@@ -1,21 +1,38 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import FeatherIcon from 'feather-icons-react';
 
-const xyz = 'black';
 const Input = ({
   label = '',
   error = false,
   errorMessage = '',
   onChange = () => {},
+  type = 'text',
   ...props
 }) => {
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <>
       <MyInputWrapper>
         <MyInputLabel error>{label}</MyInputLabel>
       </MyInputWrapper>
       <MyInputWrapper>
-        <MyInput error={error} onChange={onChange} {...props} />
+        <MyInput
+          error={error}
+          onChange={onChange}
+          type={
+            type === 'password' ? (showPassword ? 'text' : 'password') : type
+          }
+          {...props}
+        />
+        {type === 'password' && (
+          <FeatherIcon
+            className="styled-icon"
+            icon={showPassword ? 'eye' : 'eye-off'}
+            size={20}
+            onClick={() => setShowPassword((prevState) => !prevState)}
+          />
+        )}
       </MyInputWrapper>
       {error ? (
         <MyInputWrapper>
@@ -41,6 +58,12 @@ const MyInput = styled.input`
 `;
 const MyInputWrapper = styled.div`
   margin: 10px 5px;
+  position: relative;
+  .styled-icon {
+    position: absolute;
+    right: 12px;
+    top: 30%;
+  }
 `;
 const MyInputLabel = styled.label`
   color: ${(props) =>
